@@ -15,4 +15,7 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "ilhambakcell"
+
+// App modülünü dahil et ve klasör yoksa bulutta otomatik oluştur
 include(":app")
+project(":app").projectDir.mkdirs()
