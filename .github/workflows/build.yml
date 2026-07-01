@@ -14,16 +14,15 @@ jobs:
           java-version: '17'
           distribution: 'zulu'
 
-      # GRADLE 9+ YERİNE UYUMLU OLAN GRADLE 8.2 SÜRÜMÜNÜ DIŞARIDAN YÜKLER
       - name: Setup Gradle 8.2
         uses: gradle/actions/setup-gradle@v3
         with:
           gradle-version: '8.2'
 
-      # PROJEYİ TEMİZLER VE DERLER
+      # ÖNBELLEK ÇAKIŞMALARINI SIFIRLAR VE APK DERLER
       - name: Build Debug APK
         run: |
-          gradle clean assembleDebug
+          gradle clean --no-build-cache assembleDebug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
