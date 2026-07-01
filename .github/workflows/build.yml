@@ -14,19 +14,13 @@ jobs:
           java-version: '17'
           distribution: 'zulu'
 
-      # EKSİK GRADLE MOTORUNU BULUTTA SIFIRDAN OLUŞTURUR VE YÜKLER
-      - name: Validate Gradle Wrapper
-        run: |
-          gradle wrapper --gradle-version 8.2
-
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
 
-      # ÇALIŞTIRMA YETKİSİ VERİR VE DERLEMEYİ BAŞLATIR
+      # DOĞRUDAN SİSTEMDEKİ KÜTÜPHANEYİ KULLANARAK DERLER
       - name: Build Debug APK
         run: |
-          chmod +x gradlew
-          ./gradlew assembleDebug
+          gradle assembleDebug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
